@@ -32,7 +32,7 @@ class Counters extends Component {
   }
 
   handleIncrement(counter, inc) {
-    console.log(`Increment ${counter.id} by ${inc}`);
+    console.log(`Increment ${counter.id} with ${counter.value} by ${inc}`);
     const counters = this.state.counters.map(c => {
       if (c.id === counter.id) {
         c.value = counter.value += inc;

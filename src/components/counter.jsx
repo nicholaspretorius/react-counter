@@ -18,8 +18,11 @@ class Counter extends Component {
     return (
       <React.Fragment>
         {this.props.children}
-        <div style={this.styles} className={this.setBadgeStyle()}>
-          {this.props.value}
+        <div
+          style={this.styles}
+          className={this.setBadgeStyle(this.props.value)}
+        >
+          {this.formatCount(this.props.value)}
         </div>
         <button
           onClick={() => this.props.onIncrement()}
@@ -58,15 +61,15 @@ class Counter extends Component {
     }
   }
 
-  setBadgeStyle() {
+  setBadgeStyle(value) {
     let classes = "badge badge-";
-    return (classes += this.state.count === 0 ? "warning" : "primary");
+    return (classes += value === 0 ? "warning" : "primary");
   }
 
-  formatCount = value => {
-    const { count } = value;
+  formatCount(value) {
+    const count = value;
     return count === 0 ? "Zero" : count;
-  };
+  }
 }
 
 export default Counter;
