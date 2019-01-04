@@ -5,7 +5,6 @@ class Counter extends Component {
     super(props);
 
     this.state = {
-      count: 0,
       tags: []
     };
   }
@@ -18,33 +17,31 @@ class Counter extends Component {
   render() {
     return (
       <React.Fragment>
+        {this.props.children}
         <div style={this.styles} className={this.setBadgeStyle()}>
-          {this.formatCount()}
+          {this.props.value}
         </div>
         <button
-          onClick={() => this.handleIncrement(1)}
-          className="btn btn-secondary btn-xs"
+          onClick={() => this.props.onIncrement()}
+          className="btn btn-secondary btn-xs m-2"
         >
           +
         </button>
         <button
-          onClick={() => this.handleIncrement(-1)}
-          className="btn btn-secondary btn-xs"
+          onClick={() => this.props.onDecrement()}
+          className="btn btn-secondary btn-xs m-2"
         >
           -
+        </button>
+        <button
+          className="btn btn-danger btn-sm m-2"
+          onClick={this.props.onDelete}
+        >
+          Delete
         </button>
         {this.renderTags()}
       </React.Fragment>
     );
-  }
-
-  handleIncrement(inc) {
-    let count = this.state.count;
-    count += inc;
-
-    this.setState({
-      count
-    });
   }
 
   renderTags() {
@@ -66,10 +63,10 @@ class Counter extends Component {
     return (classes += this.state.count === 0 ? "warning" : "primary");
   }
 
-  formatCount() {
-    const { count } = this.state;
+  formatCount = value => {
+    const { count } = value;
     return count === 0 ? "Zero" : count;
-  }
+  };
 }
 
 export default Counter;
