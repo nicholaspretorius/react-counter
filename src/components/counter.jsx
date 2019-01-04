@@ -18,31 +18,38 @@ class Counter extends Component {
     return (
       <React.Fragment>
         {this.props.children}
-        <div
-          style={this.styles}
-          className={this.setBadgeStyle(this.props.counter.value)}
-        >
-          {this.formatCount(this.props.counter.value)}
+        <div className="row">
+          <div className="col-1">
+            <span
+              style={this.styles}
+              className={this.setBadgeStyle(this.props.counter.value)}
+            >
+              {this.formatCount(this.props.counter.value)}
+            </span>
+          </div>
+          <div className="col">
+            <button
+              onClick={this.props.onIncrement}
+              className="btn btn-secondary btn-xs m-2"
+            >
+              +
+            </button>
+            <button
+              onClick={this.props.onDecrement}
+              className="btn btn-secondary btn-xs m-2"
+              disabled={this.props.counter.value === 0 ? "disabled" : ""}
+            >
+              -
+            </button>
+            <button
+              className="btn btn-danger btn-xs m-2"
+              onClick={this.props.onDelete}
+            >
+              X
+            </button>
+            {this.renderTags()}
+          </div>
         </div>
-        <button
-          onClick={this.props.onIncrement}
-          className="btn btn-secondary btn-xs m-2"
-        >
-          +
-        </button>
-        <button
-          onClick={this.props.onDecrement}
-          className="btn btn-secondary btn-xs m-2"
-        >
-          -
-        </button>
-        <button
-          className="btn btn-danger btn-sm m-2"
-          onClick={this.props.onDelete}
-        >
-          Delete
-        </button>
-        {this.renderTags()}
       </React.Fragment>
     );
   }
