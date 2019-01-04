@@ -20,18 +20,18 @@ class Counter extends Component {
         {this.props.children}
         <div
           style={this.styles}
-          className={this.setBadgeStyle(this.props.value)}
+          className={this.setBadgeStyle(this.props.counter.value)}
         >
-          {this.formatCount(this.props.value)}
+          {this.formatCount(this.props.counter.value)}
         </div>
         <button
-          onClick={() => this.props.onIncrement()}
+          onClick={this.props.onIncrement}
           className="btn btn-secondary btn-xs m-2"
         >
           +
         </button>
         <button
-          onClick={() => this.props.onDecrement()}
+          onClick={this.props.onDecrement}
           className="btn btn-secondary btn-xs m-2"
         >
           -
